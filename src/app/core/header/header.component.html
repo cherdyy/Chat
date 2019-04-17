@@ -1,0 +1,49 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
+               [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+               [mode]="(isHandset$ | async) ? 'over' : 'side'"
+                [opened]="(isHandset$ | async)">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item href="#">Link 1</a>
+      <a mat-list-item href="#">Link 2</a>
+      <a mat-list-item href="#">Link 3</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <a routerLink="" class="home-button">Chat.ru</a>
+      <div  *ngIf="!(isHandset$ | async)">
+        <a routerLink="blog" mat-button>Blog</a>
+        <a routerLink="chat" mat-button>Chat</a>
+        <a routerLink="profile" mat-button>Profile</a>
+      </div>
+      <span></span>
+      <span></span>
+      <span></span>
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <div *ngIf="!(isHandset$ | async)">
+      <button mat-button (click)="logout() " class="menu-list" *ngIf="(user|async)?.uid">
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Sign out</span>
+      </button>
+      <a mat-button routerLink="sign-in"  *ngIf="!(user|async)?.uid">
+        <mat-icon>how_to_reg</mat-icon>
+        <span>Sign in</span>
+      </a>
+        <a mat-button routerLink="sign-up"  *ngIf="!(user|async)?.uid">
+          <mat-icon>present_to_all</mat-icon>
+          <span>Sign up</span>
+        </a>
+      </div>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,32 @@
+.sidenav-container {
+  height: 100%;
+  width: 100%;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+.menu-name {
+  border-bottom: 2px solid black;
+}
+.hide {
+  display: none;
+}
+.mat-toolbar-single-row {
+  display: flex;
+  justify-content: space-around;
+}
+.home-button {
+  text-decoration: none;
+  color: white;
+}

@@ -1,0 +1,30 @@
+<div class="sign-in">
+  <form [formGroup]="signInForm" novalidate (ngSubmit)="login()" class="sign-in-form">
+    <mat-form-field >
+      <input type="email" matInput placeholder="Login"  class="form-control" name="email" formControlName="userLogin" />
+    </mat-form-field>
+    <mat-form-field >
+      <input type="password" matInput placeholder="Password"  class="form-control" name="userPassword" formControlName="userPassword" />
+    </mat-form-field>
+    <div class="form-group">
+      <button mat-button [disabled]="signInForm.invalid">
+        Отправить
+      </button>
+    </div>
+  </form>
+</div>
+<div class="sign-in">
+  <ul class="links">
+    <li class="socials__item socials__item_fb">
+      <a href="#"></a>
+    </li>
+    <li class="socials__item socials__item_tw">
+      <a href="#"></a>
+    </li>
+    <li class="socials__item socials__item_g">
+      <a (click)="googleLogin()"></a>
+    </li>
+  </ul>
+</div>
+
+

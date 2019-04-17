@@ -1,0 +1,23 @@
+.profile-main-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 0 200px;
+  margin-top: 40px;
+}
+img {
+  height: 250px;
+  width: 250px;
+}
+.info {
+  margin-left: 60px ;
+  font-size: 20px;
+  padding-left: 40px;
+}
+.change-password {
+  display: flex;
+  flex-direction: column;
+}
+.edit-input {
+  margin-left: 100px;
+}

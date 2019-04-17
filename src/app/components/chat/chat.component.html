@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="rows">
+    <div class="users">
+      <ul class="user-list">
+        <li *ngFor="let user of users" class="user" [ngClass]="{isOnline: user.status}">
+          <img  [src]="user.photoUrl" class="user-img">
+          <span *ngIf="!(isHandset$ | async)">{{user.displayName}}</span>
+        </li>
+      </ul>
+    </div>
+    <div class="messages">
+      <ul class="messages-list scroll">
+        <li *ngFor="let message of messages" class="message" [ngClass]="{isOwnMessage: ownMess}">
+          <app-message-treatment [chatMessage]=message></app-message-treatment>
+        </li>
+      </ul>
+      <div class="input">
+        <input
+          class="chatInput"
+          [(ngModel)]="message"
+          (keydown)="handleSubmit($event)"
+        />
+        <button class="chatButton"
+                (click)=send()>Send</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

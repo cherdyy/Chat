@@ -1,0 +1,32 @@
+.message-container {
+  display: flex;
+  height: auto;
+  border-radius: 5px;
+  align-items: stretch;
+  background-color: white;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.26), 0 3px 6px rgba(0,0,0,0.23);
+  margin: 10px;
+}
+.ownContainer {
+  background-color: white;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+.name-data {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  font-size: 0.7em;
+  background-color: #eee;
+}
+.ownNameData {
+  background-color: #01579B;
+  color: #eee;
+}
+.message-content {
+  background-color: white;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+}
