@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {ChatService} from '../../services/chat.service';
 
 @Component({
   selector: 'app-blog',
@@ -8,10 +7,8 @@ import {ChatService} from '../../services/chat.service';
 })
 export class BlogComponent implements OnInit {
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 
 }

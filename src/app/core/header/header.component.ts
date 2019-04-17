@@ -12,18 +12,34 @@ import * as firebase from 'firebase';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
+  /**
+   * get user info from auth.service
+   * @type {Observable<firebase.User>}
+   */
   user: Observable<firebase.User>;
+  /**
+   * user's email
+   */
   userEmail: string;
 
+  /**
+   * check is resolution like handset
+   */
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches)
     );
 
+  /**
+   * @ignore
+   * @param breakpointObserver
+   * @param auth
+   */
   constructor(private breakpointObserver: BreakpointObserver,
               private auth: AuthserviceService) {}
-
+  /**
+   * @ignore
+   */
   ngOnInit() {
     this.user = this.auth.authUser();
     this.user.subscribe(user => {
@@ -34,9 +50,10 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  logout(){
+  /**
+   * get logged out from site
+   */
+  logout() {
     this.auth.logout();
   }
-
-
 }

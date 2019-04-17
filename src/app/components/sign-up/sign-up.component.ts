@@ -10,9 +10,21 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 })
 export class SignUpComponent implements OnInit {
 
+  /**
+   * form controls group for get user's entry data
+   * @type {FormGroup}
+   */
   SignUpForm: FormGroup;
+  /**
+   * error when invalid data
+   */
   errorMsg: string;
 
+  /**
+   * @ignore
+   * @param auth
+   * @param router
+   */
   constructor(private auth: AuthserviceService,
               private router: Router) {
     this.SignUpForm = new FormGroup({
@@ -20,11 +32,16 @@ export class SignUpComponent implements OnInit {
       'password': new FormControl('', Validators.required),
       'displayName': new FormControl('', Validators.required)
     });
-
   }
 
+  /**
+   *@ignore
+   */
   ngOnInit() {}
 
+  /**
+   * get signed up to site
+   */
   signUp() {
     const email = this.SignUpForm.value.email;
     const password = this.SignUpForm.value.password;

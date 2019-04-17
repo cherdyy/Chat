@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import {AngularFireDatabase, AngularFireList} from '@angular/fire/database';
 import {AngularFireAuth} from '@angular/fire/auth';
-import {FirebaseListObservable} from '@angular/fire/database-deprecated';
-import {Observable} from 'rxjs';
 import {ChatMessage} from './models/chatMessage.model';
 
 import * as firebase from 'firebase/app';
@@ -14,10 +12,27 @@ import {User} from 'firebase';
 })
 export class ChatService {
 
+  /**
+   * user's data
+   * @type {firebase.User}
+   */
   user: firebase.User;
+  /**
+   * all messages from firebase
+   * @type {any}
+   */
   chatMessages: any;
-  chatMessage: ChatMessage;
+  /**
+   * user's userName
+   * @type {string}
+   */
   userName: string;
+
+  /**
+   * @ignore
+   * @param db
+   * @param afAuth
+   */
 
   constructor(private db: AngularFireDatabase,
               private afAuth: AngularFireAuth) {
@@ -32,6 +47,9 @@ export class ChatService {
 
   }
 
+  /**
+   * get current user
+   */
   getUser() {
     const userId = this.user.uid;
     const path = `/users/${userId}`;
@@ -39,12 +57,19 @@ export class ChatService {
     return this.db.object(path);
   }
 
+  /**
+   * get all users from firebase
+   */
   getUsers() {
     const path = '/users';
     console.log(this.db.list(path));
     return this.db.list(path);
   }
 
+  /**
+   * save and send message to firebase
+   * @param msg
+   */
   sendMessage(msg: string) {
     const timestamp = this.getTimeStamp();
     const email = this.user.email;
@@ -57,6 +82,10 @@ export class ChatService {
       photoURL: this.user.photoURL});
   }
 
+  /**
+   * get all message from firebase
+   * @type {AngularFireList<ChatMessage[]>}
+   */
   getMessages(): AngularFireList<ChatMessage[]> {
     return this.db.list('/messages', ref => {
       const q = ref.orderByKey().limitToLast(25);
@@ -65,6 +94,9 @@ export class ChatService {
   );
   }
 
+  /**
+   * get current date
+   */
   getTimeStamp() {
     const now = new Date();
     const date = now.getUTCFullYear() + '/' +

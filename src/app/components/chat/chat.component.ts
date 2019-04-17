@@ -1,10 +1,8 @@
 import {Component, OnChanges, OnInit} from '@angular/core';
+
 import {ChatService} from '../../services/chat.service';
 import {User} from '../../services/models/User';
-import {FirebaseListObservable} from '@angular/fire/database-deprecated';
-import {ChatMessage} from '../../services/models/chatMessage.model';
 import {Observable} from 'rxjs';
-import {AngularFireList} from '@angular/fire/database';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {map} from 'rxjs/operators';
 
@@ -13,21 +11,41 @@ import {map} from 'rxjs/operators';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss']
 })
-export class ChatComponent implements OnInit, OnChanges{
+export class ChatComponent implements OnInit, OnChanges {
+  /**
+   * user's data
+   * @type {User[]}
+   */
   users: User[];
+  /**
+   * all messages from firebase
+   * @type {any}
+   */
   messages: any;
+  /**
+   * user's message
+   * @type {string}
+   */
   message: string;
-  isOnline: boolean;
-
+  /**
+   * check is resolution like handset
+   */
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches)
     );
 
+  /**
+   * @ignore
+   * @param chat
+   * @param breakpointObserver
+   */
   constructor(private chat: ChatService,
               private breakpointObserver: BreakpointObserver) { }
 
-
+  /**
+   * @ignore
+   */
   ngOnInit() {
     this.chat.getUsers().valueChanges().subscribe((users) => {
       this.users = users;
@@ -37,16 +55,25 @@ export class ChatComponent implements OnInit, OnChanges{
     });
   }
 
-
+  /**
+   * @ignore
+   */
   ngOnChanges() {
     this.messages = this.chat.getMessages();
   }
 
+  /**
+   * save and send message to firebase
+   */
   send() {
     this.chat.sendMessage(this.message);
     this.message = '';
   }
 
+  /**
+   * send and save message to firebase on click 'enter'
+   * @param event
+   */
   handleSubmit(event) {
     if (event.keyCode === 13) {
       this.send();
