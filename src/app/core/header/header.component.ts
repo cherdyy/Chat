@@ -18,11 +18,6 @@ export class HeaderComponent implements OnInit {
    */
   user: Observable<firebase.User>;
   /**
-   * user's email
-   */
-  userEmail: string;
-
-  /**
    * check is resolution like handset
    */
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
@@ -42,12 +37,6 @@ export class HeaderComponent implements OnInit {
    */
   ngOnInit() {
     this.user = this.auth.authUser();
-    this.user.subscribe(user => {
-      if (user) {
-        console.log(user);
-        this.userEmail = user.email;
-      }
-    });
   }
 
   /**
